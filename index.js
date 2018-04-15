@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
+import {BrowserRouter, Route} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/styles.css';
 import SearchResult from "./app/screens/SearchResult/index";
 
-ReactDOM.render(
-  <Router history={browserHistory}>
-    <Route path="/" component={SearchResult} />
-  </Router>,
-  document.getElementById('container')
+ReactDOM.render((
+        <BrowserRouter>
+            <Route path="/" component={SearchResult}/>
+        </BrowserRouter>
+    ),
+    document.getElementById('container')
 );

@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import HighlightsList from "./HighlightsList";
 import {PROXY_URL_FILE} from "../../../api/proxy-api";
 
@@ -22,9 +23,9 @@ ArticlesListItem.propTypes = {
     author: PropTypes.string,
     title: PropTypes.string,
     date: PropTypes.string
-  }),
+  })
 };
 
 ArticlesListItem.defaultProps = {
-  article: {},
+  article: {}
 };

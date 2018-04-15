@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import ArticlesList from './components/ArticlesList'
 import PagesBar from "./components/PagesBar";
 
 export default class SearchResult extends Component {
-    handleSubmit = (e) => {
+    handleSubmit(e) {
         e.preventDefault();
         this.setState(function (prevState) {
             return {
@@ -21,7 +21,8 @@ export default class SearchResult extends Component {
         super();
         this.state = {currentPage: 0};
         this.incrementPage = this.incrementPage.bind(this);
-        this.decrementPage = this.decrementPage.bind(this)
+        this.decrementPage = this.decrementPage.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     incrementPage(e) {
@@ -55,67 +56,59 @@ export default class SearchResult extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col-md-12">
-                            <div className="col-md-4">
-                                <input
-                                    type="text"
-                                    placeholder="Enter a query"
-                                    className="form-control"
-                                    ref={ref => (this._query = ref)}
-                                />
-                            </div>
-                            <div className="col-md-4">
-                                <input
-                                    type="text"
-                                    placeholder="Type Chemical Element"
-                                    className="form-control"
-                                    ref={ref => (this._chemicalElement = ref)}
-                                />
-                            </div>
-                            <div className="col-md-4">
-                                <input
-                                    type="text"
-                                    placeholder="Type Chemical Formula"
-                                    className="form-control"
-                                    ref={ref => (this._chemicalFormula = ref)}
-                                />
-                            </div>
+                            <input
+                                type="text"
+                                placeholder="Введите запрос"
+                                className="form-control"
+                                ref={ref => (this._query = ref)}
+                            />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-12">
-                            <div className="col-md-4">
-                                <input
-                                    type="text"
-                                    placeholder="Type Crystal System"
-                                    className="form-control"
-                                    ref={ref => (this._crystalSystem = ref)}
-                                />
-                            </div>
-                            <div className="col-md-4">
-                                <input
-                                    type="text"
-                                    placeholder="Type Radius Type"
-                                    className="form-control"
-                                    ref={ref => (this._radiusType = ref)}
-                                />
-                            </div>
-                            <div className="col-md-4">
-                                <input
-                                    type="text"
-                                    placeholder="Type Space Group"
-                                    className="form-control"
-                                    ref={ref => (this._spaceGroup = ref)}
-                                />
-                            </div>
+                        <div className="col-md-2">
+                            <input
+                                type="text"
+                                placeholder="Type Chemical Element"
+                                className="form-control"
+                                ref={ref => (this._chemicalElement = ref)}
+                            />
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="col-md-1">
-                                <button type="submit" className="btn btn-primary">
-                                    Go
-                                </button>
-                            </div>
+                        <div className="col-md-2">
+                            <input
+                                type="text"
+                                placeholder="Type Chemical Formula"
+                                className="form-control"
+                                ref={ref => (this._chemicalFormula = ref)}
+                            />
+                        </div>
+                        <div className="col-md-2">
+                            <input
+                                type="text"
+                                placeholder="Type Crystal System"
+                                className="form-control"
+                                ref={ref => (this._crystalSystem = ref)}
+                            />
+                        </div>
+                        <div className="col-md-2">
+                            <input
+                                type="text"
+                                placeholder="Type Radius Type"
+                                className="form-control"
+                                ref={ref => (this._radiusType = ref)}
+                            />
+                        </div>
+                        <div className="col-md-2">
+                            <input
+                                type="text"
+                                placeholder="Type Space Group"
+                                className="form-control"
+                                ref={ref => (this._spaceGroup = ref)}
+                            />
+                        </div>
+                        <div className="col-md-2">
+                            <button type="submit" className="btn btn-primary">
+                                Go
+                            </button>
                         </div>
                     </div>
                     <div className="row">

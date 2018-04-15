@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 export default class PagesBar extends Component {
   render() {
@@ -21,5 +22,5 @@ export default class PagesBar extends Component {
 
 PagesBar.propTypes = {
   decrementPage: PropTypes.func,
-  incrementPage: PropTypes.func,
+  incrementPage: PropTypes.func
 };

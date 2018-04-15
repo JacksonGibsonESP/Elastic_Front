@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import HighlightsListItem from './HighlightsListItem';
 
 export default class HighlightsList extends Component {
@@ -8,7 +9,7 @@ export default class HighlightsList extends Component {
   }
 
   render() {
-    const {highlights} = this.props
+    const {highlights} = this.props;
     return (
       <ul>
         {renderHighlights(highlights)}
@@ -18,7 +19,7 @@ export default class HighlightsList extends Component {
 }
 
 HighlightsList.propTypes = {
-  highlights: PropTypes.array,
+  highlights: PropTypes.array
 };
 
 function renderHighlights(highlights) {

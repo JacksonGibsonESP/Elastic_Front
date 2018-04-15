@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export default HighlightsListItem;
 
@@ -11,9 +12,9 @@ function HighlightsListItem({highlight}) {
 }
 
 HighlightsListItem.propTypes = {
-  highlight: PropTypes.string,
+  highlight: PropTypes.string
 };
 
 HighlightsListItem.defaultProps = {
-  highlight: {},
+  highlight: {}
 };

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ArticlesListItem from './ArticlesListItem';
 import {getArticles} from '../../../api/proxy-api'
 
@@ -65,7 +66,7 @@ ArticlesList.propTypes = {
     radiusType: PropTypes.string,
     spaceGroup: PropTypes.string,
     pageNumber: PropTypes.number.isRequired,
-    getArticles: PropTypes.func,
+    getArticles: PropTypes.func
 };
 
 ArticlesList.defaultProps = {getArticles};
