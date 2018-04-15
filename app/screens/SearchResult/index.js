@@ -52,9 +52,9 @@ export default class SearchResult extends Component {
         const {spaceGroup} = this.state;
         const {currentPage} = this.state;
         return (
-            <section className="container">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="row">
+            <form onSubmit={this.handleSubmit}>
+                <div className="container">
+                    <div className="form-group row">
                         <div className="col-md-12">
                             <input
                                 type="text"
@@ -64,7 +64,7 @@ export default class SearchResult extends Component {
                             />
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="form-group row">
                         <div className="col-md-2">
                             <input
                                 type="text"
@@ -106,12 +106,12 @@ export default class SearchResult extends Component {
                             />
                         </div>
                         <div className="col-md-2">
-                            <button type="submit" className="btn btn-primary">
+                            <button type="submit" className="btn btn-primary btn-block">
                                 Go
                             </button>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="form-group row">
                         <div className="col-md-12">
                             <ArticlesList
                                 query={query}
@@ -124,8 +124,8 @@ export default class SearchResult extends Component {
                         </div>
                     </div>
                     <PagesBar decrementPage={this.decrementPage} incrementPage={this.incrementPage}/>
-                </form>
-            </section>
+                </div>
+            </form>
         );
     }
 }
