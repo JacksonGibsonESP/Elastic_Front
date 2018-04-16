@@ -27,3 +27,7 @@ mark, .mark {
 p {
 	white-space: pre-line;
 }
+
+.custom-margin {
+	margin-top: 16px;
+}

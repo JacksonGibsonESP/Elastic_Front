@@ -54,7 +54,7 @@ export default class SearchResult extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="container">
-                    <div className="form-group row">
+                    <div className="form-group row custom-margin">
                         <div className="col-md-12">
                             <input
                                 type="text"
