@@ -66,48 +66,61 @@ export default class SearchResult extends Component {
                     </div>
                     <div className="form-group row">
                         <div className="col-md-2">
-                            <input
-                                type="text"
-                                placeholder="Type Chemical Element"
+                            <select
                                 className="form-control"
                                 ref={ref => (this._chemicalElement = ref)}
-                            />
+                            >
+                                <option selected value="">Хим. элемент</option>
+                                <option value="Fe">Fe</option>
+                                <option value="Au">Au</option>
+                                <option value="Ag">Ag</option>
+                            </select>
                         </div>
                         <div className="col-md-2">
-                            <input
-                                type="text"
-                                placeholder="Type Chemical Formula"
+                            <select
                                 className="form-control"
                                 ref={ref => (this._chemicalFormula = ref)}
-                            />
+                            >
+                                <option selected value="">Хим. формула</option>
+                                <option value="Al2O3">Al2O3</option>
+                                <option value="AgO">AgO</option>
+                                <option value="FeO3">FeO3</option>
+                            </select>
                         </div>
                         <div className="col-md-2">
-                            <input
-                                type="text"
-                                placeholder="Type Crystal System"
+                            <select
                                 className="form-control"
                                 ref={ref => (this._crystalSystem = ref)}
-                            />
+                            >
+                                <option selected value="">Тип решётки</option>
+                                <option value="Гексагональная">Гексагональная</option>
+                                <option value="Кубическая">Кубическая</option>
+                            </select>
                         </div>
                         <div className="col-md-2">
-                            <input
-                                type="text"
-                                placeholder="Type Radius Type"
+                            <select
                                 className="form-control"
                                 ref={ref => (this._radiusType = ref)}
-                            />
+                            >
+                                <option selected value="">Радиус</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                            </select>
                         </div>
                         <div className="col-md-2">
-                            <input
-                                type="text"
-                                placeholder="Type Space Group"
+                            <select
                                 className="form-control"
                                 ref={ref => (this._spaceGroup = ref)}
-                            />
+                            >
+                                <option selected value="">Пространственная группа</option>
+                                <option value="Первая">Первая</option>
+                                <option value="Вторая">Вторая</option>
+                                <option value="Третья">Третья</option>
+                            </select>
                         </div>
                         <div className="col-md-2">
                             <button type="submit" className="btn btn-primary btn-block">
-                                Go
+                                Поиск
                             </button>
                         </div>
                     </div>

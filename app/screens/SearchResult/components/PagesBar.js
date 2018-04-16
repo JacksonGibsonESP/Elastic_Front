@@ -7,12 +7,12 @@ export default class PagesBar extends Component {
             <div className="form-group row">
                 <div className="col-md-6">
                     <button onClick={this.props.decrementPage} className="btn btn-primary">
-                        Prev
+                        Предыдущая
                     </button>
                 </div>
                 <div className="col-md-6">
                     <button onClick={this.props.incrementPage} className="btn btn-primary float-right">
-                        Next
+                        Следующая
                     </button>
                 </div>
             </div>

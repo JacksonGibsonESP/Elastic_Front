@@ -49,7 +49,7 @@ export default class ArticlesList extends Component {
         const {hits} = this.state;
         return (
             <div>
-                <h4>Hits: {hits}</h4>
+                <h4>Результатов: {hits}</h4>
                 <ul className="list-unstyled">
                     {renderArticles(articles)}
                 </ul>
