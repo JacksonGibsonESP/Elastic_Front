@@ -13,6 +13,7 @@ export default class SearchResult extends Component {
                 crystalSystem: this._crystalSystem.value,
                 radiusType: this._radiusType.value,
                 spaceGroup: this._spaceGroup.value,
+                currentPage: 0
             }
         });
     };
@@ -55,7 +56,7 @@ export default class SearchResult extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div className="container">
                     <div className="form-group row custom-margin">
-                        <div className="col-md-12">
+                        <div className="col-lg-12">
                             <input
                                 type="text"
                                 placeholder="Введите запрос"
@@ -64,68 +65,105 @@ export default class SearchResult extends Component {
                             />
                         </div>
                     </div>
-                    <div className="form-group row">
-                        <div className="col-md-2">
+                    <div className="form-group row d-flex align-items-end">
+                        <div className="col-lg-2">
+                            <label>Химические элементы</label>
                             <select
                                 className="form-control"
+                                defaultValue=""
                                 ref={ref => (this._chemicalElement = ref)}
                             >
-                                <option selected value="">Хим. элемент</option>
+                                <option value=""/>
+                                <option value="N">N</option>
+                                <option value="O">O</option>
+                                <option value="Al">Al</option>
+                                <option value="Si">Si</option>
                                 <option value="Fe">Fe</option>
-                                <option value="Au">Au</option>
-                                <option value="Ag">Ag</option>
+                                <option value="W">W</option>
+                                <option value="U">U</option>
                             </select>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-lg-2">
+                            <label>Химическая формула</label>
                             <select
                                 className="form-control"
+                                defaultValue=""
                                 ref={ref => (this._chemicalFormula = ref)}
                             >
-                                <option selected value="">Хим. формула</option>
+                                <option value=""/>
                                 <option value="Al2O3">Al2O3</option>
-                                <option value="AgO">AgO</option>
-                                <option value="FeO3">FeO3</option>
+                                <option value="Al1N1">Al1N1</option>
+                                <option value="Si1">Si1</option>
                             </select>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-lg-2">
+                            <label>Кристаллическая система</label>
                             <select
                                 className="form-control"
+                                defaultValue=""
                                 ref={ref => (this._crystalSystem = ref)}
                             >
-                                <option selected value="">Тип решётки</option>
-                                <option value="Гексагональная">Гексагональная</option>
+                                <option value=""/>
                                 <option value="Кубическая">Кубическая</option>
+                                <option value="Гексагональная">Гексагональная</option>
+                                <option value="Ромбическая">Ромбическая</option>
                             </select>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-lg-2">
+                            <label>Тип атомного радиуса</label>
                             <select
                                 className="form-control"
+                                defaultValue=""
                                 ref={ref => (this._radiusType = ref)}
                             >
-                                <option selected value="">Радиус</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
+                                <option value=""/>
+                                <option value="Ионный">Ионный</option>
+                                <option value="Металлический">Металлический</option>
+                                <option value="Ковалентный">Ковалентный</option>
                             </select>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-lg-2">
+                            <label>Пространственная группа</label>
                             <select
                                 className="form-control"
+                                defaultValue=""
                                 ref={ref => (this._spaceGroup = ref)}
                             >
-                                <option selected value="">Пространственная группа</option>
-                                <option value="Первая">Первая</option>
-                                <option value="Вторая">Вторая</option>
-                                <option value="Третья">Третья</option>
+                                <option value=""/>
+                                <option value="P23">P23</option>
+                                <option value="F23">F23</option>
+                                <option value="I23">I23</option>
+                                <option value="Pm3">Pm3</option>
+                                <option value="Pn3">Pn3</option>
+                                <option value="Fm3">Fm3</option>
+                                <option value="Fd3">Fd3</option>
+                                <option value="Im3">Im3</option>
+                                <option value="Pa3">Pa3</option>
+                                <option value="P432">P432</option>
+                                <option value="F432">F432</option>
+                                <option value="I432">I432</option>
+                                <option value="P43m">P43m</option>
+                                <option value="F43m">F43m</option>
+                                <option value="I43m">I43m</option>
+                                <option value="Pm3m">Pm3m</option>
+                                <option value="Pn3n">Pn3n</option>
+                                <option value="Pm3n">Pm3n</option>
+                                <option value="Pn3m">Pn3m</option>
+                                <option value="Fm3m">Fm3m</option>
+                                <option value="Fm3c">Fm3c</option>
+                                <option value="Fd3m">Fd3m</option>
+                                <option value="Im3m">Im3m</option>
+                                <option value="Ia3d">Ia3d</option>
                             </select>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-lg-2">
                             <button type="submit" className="btn btn-primary btn-block">
                                 Поиск
                             </button>
                         </div>
                     </div>
                     <div className="form-group row">
-                        <div className="col-md-12">
+                        <div className="col-lg-12">
                             <ArticlesList
                                 query={query}
                                 chemicalElement={chemicalElement}
