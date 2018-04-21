@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default class PagesBar extends Component {
     render() {
         return (
-            <div className="form-group row">
+            <div className="form-group row d-flex flex-nowrap">
                 <div className="col-lg-6">
                     <button onClick={this.props.decrementPage} className="btn btn-primary">
                         Предыдущая

@@ -12,7 +12,6 @@ export default class SearchResult extends Component {
                 chemicalFormula: this._chemicalFormula.value,
                 crystalSystem: this._crystalSystem.value,
                 radiusType: this._radiusType.value,
-                spaceGroup: this._spaceGroup.value,
                 currentPage: 0
             }
         });
@@ -50,7 +49,6 @@ export default class SearchResult extends Component {
         const {chemicalFormula} = this.state;
         const {crystalSystem} = this.state;
         const {radiusType} = this.state;
-        const {spaceGroup} = this.state;
         const {currentPage} = this.state;
         const pageSize = 3;
         return (
@@ -67,7 +65,7 @@ export default class SearchResult extends Component {
                         </div>
                     </div>
                     <div className="form-group row d-flex align-items-end">
-                        <div className="col-lg-2">
+                        <div className="col-lg">
                             <label>Химические элементы</label>
                             <select
                                 className="form-control"
@@ -84,7 +82,7 @@ export default class SearchResult extends Component {
                                 <option value="U">U</option>
                             </select>
                         </div>
-                        <div className="col-lg-2">
+                        <div className="col-lg">
                             <label>Химическая формула</label>
                             <select
                                 className="form-control"
@@ -97,7 +95,7 @@ export default class SearchResult extends Component {
                                 <option value="Si1">Si1</option>
                             </select>
                         </div>
-                        <div className="col-lg-2">
+                        <div className="col-lg">
                             <label>Кристаллическая система</label>
                             <select
                                 className="form-control"
@@ -110,7 +108,7 @@ export default class SearchResult extends Component {
                                 <option value="Ромбическая">Ромбическая</option>
                             </select>
                         </div>
-                        <div className="col-lg-2">
+                        <div className="col-lg">
                             <label>Тип атомного радиуса</label>
                             <select
                                 className="form-control"
@@ -123,41 +121,7 @@ export default class SearchResult extends Component {
                                 <option value="Ковалентный">Ковалентный</option>
                             </select>
                         </div>
-                        <div className="col-lg-2">
-                            <label>Пространственная группа</label>
-                            <select
-                                className="form-control"
-                                defaultValue=""
-                                ref={ref => (this._spaceGroup = ref)}
-                            >
-                                <option value=""/>
-                                <option value="P23">P23</option>
-                                <option value="F23">F23</option>
-                                <option value="I23">I23</option>
-                                <option value="Pm3">Pm3</option>
-                                <option value="Pn3">Pn3</option>
-                                <option value="Fm3">Fm3</option>
-                                <option value="Fd3">Fd3</option>
-                                <option value="Im3">Im3</option>
-                                <option value="Pa3">Pa3</option>
-                                <option value="P432">P432</option>
-                                <option value="F432">F432</option>
-                                <option value="I432">I432</option>
-                                <option value="P43m">P43m</option>
-                                <option value="F43m">F43m</option>
-                                <option value="I43m">I43m</option>
-                                <option value="Pm3m">Pm3m</option>
-                                <option value="Pn3n">Pn3n</option>
-                                <option value="Pm3n">Pm3n</option>
-                                <option value="Pn3m">Pn3m</option>
-                                <option value="Fm3m">Fm3m</option>
-                                <option value="Fm3c">Fm3c</option>
-                                <option value="Fd3m">Fd3m</option>
-                                <option value="Im3m">Im3m</option>
-                                <option value="Ia3d">Ia3d</option>
-                            </select>
-                        </div>
-                        <div className="col-lg-2">
+                        <div className="col-lg">
                             <button type="submit" className="btn btn-primary btn-block">
                                 Поиск
                             </button>
@@ -171,7 +135,6 @@ export default class SearchResult extends Component {
                                 chemicalFormula={chemicalFormula}
                                 crystalSystem={crystalSystem}
                                 radiusType={radiusType}
-                                spaceGroup={spaceGroup}
                                 pageNumber={currentPage}
                                 pageSize={pageSize}/>
                         </div>
