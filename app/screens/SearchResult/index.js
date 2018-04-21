@@ -52,6 +52,7 @@ export default class SearchResult extends Component {
         const {radiusType} = this.state;
         const {spaceGroup} = this.state;
         const {currentPage} = this.state;
+        const pageSize = 3;
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="container">
@@ -171,7 +172,8 @@ export default class SearchResult extends Component {
                                 crystalSystem={crystalSystem}
                                 radiusType={radiusType}
                                 spaceGroup={spaceGroup}
-                                pageNumber={currentPage}/>
+                                pageNumber={currentPage}
+                                pageSize={pageSize}/>
                         </div>
                     </div>
                     <PagesBar decrementPage={this.decrementPage} incrementPage={this.incrementPage}/>

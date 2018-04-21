@@ -20,6 +20,7 @@ export default class ArticlesList extends Component {
         const {radiusType} = props;
         const {spaceGroup} = props;
         const {pageNumber} = props;
+        const {pageSize} = props;
         this.props.getArticles(
             query,
             chemicalElement,
@@ -27,7 +28,7 @@ export default class ArticlesList extends Component {
             crystalSystem,
             radiusType,
             spaceGroup,
-            pageNumber * 4, 4)
+            pageNumber * pageSize, pageSize)
             .then(articles => {
                 this.setState({
                     articles: articles.rows,
@@ -66,6 +67,7 @@ ArticlesList.propTypes = {
     radiusType: PropTypes.string,
     spaceGroup: PropTypes.string,
     pageNumber: PropTypes.number.isRequired,
+    pageSize: PropTypes.number.isRequired,
     getArticles: PropTypes.func
 };
 

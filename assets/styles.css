@@ -31,3 +31,7 @@ p {
 .custom-margin {
 	margin-top: 16px;
 }
+
+.text-formatting {
+	text-align: justify;
+}
