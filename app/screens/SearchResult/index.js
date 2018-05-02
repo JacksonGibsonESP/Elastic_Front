@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import ArticlesList from './components/ArticlesList'
 import PagesBar from "./components/PagesBar";
+import {getChemicalElements, getChemicalFormulas, getCrystalSystems, getRadiusTypes} from '../../api/proxy-api'
+import PropTypes from "prop-types";
 
 export default class SearchResult extends Component {
     handleSubmit(e) {
@@ -19,10 +21,55 @@ export default class SearchResult extends Component {
 
     constructor() {
         super();
-        this.state = {currentPage: 0};
+        this.state = {
+            currentPage: 0,
+            chemicalElements: [],
+            chemicalFormulas: [],
+            crystalSystems: [],
+            radiusTypes: []
+        };
         this.incrementPage = this.incrementPage.bind(this);
         this.decrementPage = this.decrementPage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentWillMount() {
+        this.getChemicalElements();
+        this.getChemicalFormulas();
+        this.getCrystalSystems();
+        this.getRadiusTypes();
+    }
+
+    getChemicalElements() {
+        this.props.getChemicalElements().then(chemicalElements => {
+            this.setState({
+                chemicalElements: chemicalElements.chemicalElements
+            });
+        });
+    }
+
+    getChemicalFormulas() {
+        this.props.getChemicalFormulas().then(chemicalFormulas => {
+            this.setState({
+                chemicalFormulas: chemicalFormulas.chemicalFormulas
+            });
+        });
+    }
+
+    getCrystalSystems() {
+        this.props.getCrystalSystems().then(crystalSystems => {
+            this.setState({
+                crystalSystems: crystalSystems.crystalSystems
+            });
+        });
+    }
+
+    getRadiusTypes() {
+        this.props.getRadiusTypes().then(radiusTypes => {
+            this.setState({
+                radiusTypes: radiusTypes.radiusTypes
+            });
+        });
     }
 
     incrementPage(e) {
@@ -50,6 +97,10 @@ export default class SearchResult extends Component {
         const {crystalSystem} = this.state;
         const {radiusType} = this.state;
         const {currentPage} = this.state;
+        const {chemicalElements} = this.state;
+        const {chemicalFormulas} = this.state;
+        const {crystalSystems} = this.state;
+        const {radiusTypes} = this.state;
         const pageSize = 3;
         return (
             <form onSubmit={this.handleSubmit}>
@@ -73,13 +124,7 @@ export default class SearchResult extends Component {
                                 ref={ref => (this._chemicalElement = ref)}
                             >
                                 <option value=""/>
-                                <option value="N">N</option>
-                                <option value="O">O</option>
-                                <option value="Al">Al</option>
-                                <option value="Si">Si</option>
-                                <option value="Fe">Fe</option>
-                                <option value="W">W</option>
-                                <option value="U">U</option>
+                                {renderChemicalElements(chemicalElements)}
                             </select>
                         </div>
                         <div className="col-lg">
@@ -90,9 +135,7 @@ export default class SearchResult extends Component {
                                 ref={ref => (this._chemicalFormula = ref)}
                             >
                                 <option value=""/>
-                                <option value="Al2O3">Al2O3</option>
-                                <option value="Al1N1">Al1N1</option>
-                                <option value="Si1">Si1</option>
+                                {renderChemicalFormulas(chemicalFormulas)}
                             </select>
                         </div>
                         <div className="col-lg">
@@ -103,9 +146,7 @@ export default class SearchResult extends Component {
                                 ref={ref => (this._crystalSystem = ref)}
                             >
                                 <option value=""/>
-                                <option value="Кубическая">Кубическая</option>
-                                <option value="Гексагональная">Гексагональная</option>
-                                <option value="Ромбическая">Ромбическая</option>
+                                {renderCrystalSystems(crystalSystems)}
                             </select>
                         </div>
                         <div className="col-lg">
@@ -116,9 +157,7 @@ export default class SearchResult extends Component {
                                 ref={ref => (this._radiusType = ref)}
                             >
                                 <option value=""/>
-                                <option value="Ионный">Ионный</option>
-                                <option value="Металлический">Металлический</option>
-                                <option value="Ковалентный">Ковалентный</option>
+                                {renderRadiusTypes(radiusTypes)}
                             </select>
                         </div>
                         <div className="col-lg">
@@ -144,4 +183,38 @@ export default class SearchResult extends Component {
             </form>
         );
     }
+}
+
+SearchResult.defaultProps = {
+    getChemicalElements,
+    getChemicalFormulas,
+    getCrystalSystems,
+    getRadiusTypes
+};
+
+SearchResult.propTypes = {
+    chemicalElements: PropTypes.func,
+    chemicalFormulas: PropTypes.func,
+    crystalSystems: PropTypes.func,
+    radiusTypes: PropTypes.func
+};
+
+function renderChemicalElements(chemicalElements) {
+    return chemicalElements
+        .map(chemicalElement => <option key={chemicalElement} value={chemicalElement}>{chemicalElement}</option>);
+}
+
+function renderChemicalFormulas(chemicalFormulas) {
+    return chemicalFormulas
+        .map(chemicalFormula => <option key={chemicalFormula} value={chemicalFormula}>{chemicalFormula}</option>);
+}
+
+function renderCrystalSystems(crystalSystems) {
+    return crystalSystems
+        .map(crystalSystem => <option key={crystalSystem} value={crystalSystem}>{crystalSystem}</option>);
+}
+
+function renderRadiusTypes(radiusTypes) {
+    return radiusTypes
+        .map(radiusType => <option key={radiusType} value={radiusType}>{radiusType}</option>);
 }
