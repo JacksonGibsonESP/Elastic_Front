@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/styles.css';
-import Enroll from "./app/screens/Enroll/index";
-import AOrganisation from "./app/screens/AOrganisation";
-import BOrganisation from "./app/screens/BOrganisation";
+import Enroll from "./app/screens/enroll/index";
+import AOrganisation from "./app/screens/orgs/AOrganisation";
+import BOrganisation from "./app/screens/orgs/BOrganisation";
 
 ReactDOM.render((
         <BrowserRouter>

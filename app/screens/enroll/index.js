@@ -15,7 +15,6 @@ export default class Enroll extends Component {
     redirectA(e) {
         e.preventDefault();
         enrollAAdmin().then(token => {
-            console.log(token);
             this.setState({
                 token: token,
                 toA: true
@@ -26,7 +25,6 @@ export default class Enroll extends Component {
     redirectB(e) {
         e.preventDefault();
         enrollBAdmin().then(token => {
-            console.log(token);
             this.setState({
                 token: token,
                 toB: true
@@ -47,12 +45,12 @@ export default class Enroll extends Component {
                     <div className="form-group row d-flex align-items-end">
                         <div className="col-lg">
                             <button className="btn btn-primary btn-block" onClick={this.redirectA.bind(this)}>
-                                Enroll A org amin
+                                Enroll A org admin
                             </button>
                         </div>
                         <div className="col-lg">
                             <button className="btn btn-primary btn-block" onClick={this.redirectB.bind(this)}>
-                                Enroll B org amin
+                                Enroll B org admin
                             </button>
                         </div>
                     </div>
