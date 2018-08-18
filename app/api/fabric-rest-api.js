@@ -3,10 +3,12 @@ import axios from 'axios';
 const ENROLL_A_ADMIN = 'http://localhost:4000/users';
 const ENROLL_B_ADMIN = 'http://localhost:4001/users';
 
-export const A_QUERY_ALL_CARS_URL = 'http://localhost:4000/channels/a-b/chaincodes/relationship?args=%7B%7D&fcn=queryAllCars&peer=a%2Fpeer0';
-export const B_QUERY_ALL_CARS_URL = 'http://localhost:4001/channels/a-b/chaincodes/relationship?args=%7B%7D&fcn=queryAllCars&peer=b%2Fpeer0';
+const A_QUERY_ALL_CARS_URL = 'http://localhost:4000/channels/a-b/chaincodes/relationship?args=%7B%7D&fcn=queryAllCars&peer=a%2Fpeer0';
+const B_QUERY_ALL_CARS_URL = 'http://localhost:4001/channels/a-b/chaincodes/relationship?args=%7B%7D&fcn=queryAllCars&peer=b%2Fpeer0';
 
-export {enrollAdmin, queryAllCars};
+const A_INIT_LEDGER_URL = 'http://localhost:4000/channels/a-b/chaincodes/relationship';
+
+export {enrollAdmin, queryAllCars, initLedger};
 
 function enrollAdmin(org) {
     if (org === "a") {
@@ -32,4 +34,15 @@ function queryAllCars(org, token) {
                 return response.data.result;
             });
     }
+}
+
+function initLedger(token) {
+    return axios({
+        method: 'post',
+        url: A_INIT_LEDGER_URL,
+        headers: {Authorization: `Bearer ${token}`},
+        data: {"peers": ["a/peer0"], "fcn": "initLedger", "args": {}}
+    }).then(response => {
+        return response.data;
+    });
 }
