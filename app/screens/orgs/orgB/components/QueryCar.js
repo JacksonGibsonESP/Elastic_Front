@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {addRestriction, queryCar} from "../../../../api/fabric-rest-api";
+import {addRestriction, queryCar, removeRestriction} from "../../../../api/fabric-rest-api";
 
 export default class QueryCar extends Component {
     constructor() {
@@ -34,6 +34,18 @@ export default class QueryCar extends Component {
             });
     }
 
+    removeRestriction(e) {
+        e.preventDefault();
+        removeRestriction(this.props.token, this.state.key)
+            .then(() => {
+                this.setState({
+                    key: "",
+                    queried: false,
+                    car: {}
+                });
+            });
+    }
+
     render() {
         const {queried} = this.state;
         if (queried) {
@@ -54,6 +66,9 @@ export default class QueryCar extends Component {
                     />
                     <button className="btn btn-primary btn-block" onClick={this.addRestriction.bind(this)}>
                         Add restriction
+                    </button>
+                    <button className="btn btn-primary btn-block" onClick={this.removeRestriction.bind(this)}>
+                        Remove restriction
                     </button>
                 </div>
             );
