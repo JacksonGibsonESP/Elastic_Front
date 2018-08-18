@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {queryCar} from "../../../../api/fabric-rest-api";
+import {addRestriction, queryCar} from "../../../../api/fabric-rest-api";
 
 export default class QueryCar extends Component {
     constructor() {
@@ -15,8 +15,21 @@ export default class QueryCar extends Component {
         queryCar("b", this.props.token, this.key.value)
             .then(data => {
                 this.setState({
+                    key: this.key.value,
                     queried: true,
                     car: data
+                });
+            });
+    }
+
+    addRestriction(e) {
+        e.preventDefault();
+        addRestriction(this.props.token, this.state.key, this.restriction.value)
+            .then(() => {
+                this.setState({
+                    key: "",
+                    queried: false,
+                    car: {}
                 });
             });
     }
@@ -33,7 +46,13 @@ export default class QueryCar extends Component {
                     <h6>Владелец: {car.owner}</h6>
                     <h6 hidden={!car.restricted}>Ключ: {car.restricted}</h6>
                     <h6 hidden={!car.restricted}>Ключ: {car.reason}</h6>
-                    <button className="btn btn-primary btn-block">
+                    <input
+                        type="text"
+                        placeholder="Введите ограничение"
+                        className="form-control"
+                        ref={ref => (this.restriction = ref)}
+                    />
+                    <button className="btn btn-primary btn-block" onClick={this.addRestriction.bind(this)}>
                         Add restriction
                     </button>
                 </div>

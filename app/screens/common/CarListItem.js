@@ -10,8 +10,8 @@ function CarListItem({car}) {
             <h6>Модель: {car.Record.model}</h6>
             <h6>Цвет: {car.Record.color}</h6>
             <h6>Владелец: {car.Record.owner}</h6>
-            <h6 hidden={!car.Record.restricted}>Ключ: {car.Record.restricted}</h6>
-            <h6 hidden={!car.Record.restricted}>Ключ: {car.Record.reason}</h6>
+            <h6 className="text-danger" hidden={!car.Record.restricted}>Есть ограничение!</h6>
+            <h6 className="text-danger" hidden={!car.Record.restricted}>Причина ограничения: {car.Record.reason}</h6>
         </li>
     );
 }

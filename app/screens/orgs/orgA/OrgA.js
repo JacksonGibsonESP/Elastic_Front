@@ -16,9 +16,9 @@ export default class OrgA extends Component {
     initLedger(e) {
         e.preventDefault();
         initLedger(this.props.match.params.token)
-            .then(data => {
+            .then(transaction => {
                 this.setState({
-                    transaction: data.transaction
+                    transaction: transaction
                 });
             });
     }
