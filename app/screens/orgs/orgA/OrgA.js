@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import CarsList from "../../common/CarsList";
-import {initLedger} from "../../../api/fabric-rest-api";
+import {initLedger, queryCar} from "../../../api/fabric-rest-api";
+import QueryCar from "./components/QueryCar";
 
 export default class OrgA extends Component {
     constructor() {
         super();
         this.state = {
-            transaction: ""
+            transaction: "",
+            car: {}
         };
     }
 
@@ -15,9 +17,18 @@ export default class OrgA extends Component {
         e.preventDefault();
         initLedger(this.props.match.params.token)
             .then(data => {
-                console.log(data);
                 this.setState({
                     transaction: data.transaction
+                });
+            });
+    }
+
+    queryCar(e) {
+        e.preventDefault();
+        queryCar("a", this.props.match.params.token, "CAR0")
+            .then(data => {
+                this.setState({
+                    car: data
                 });
             });
     }
@@ -43,6 +54,7 @@ export default class OrgA extends Component {
                     <Link to="/">back</Link>
                 </div>
                 {button}
+                <QueryCar token={this.props.match.params.token}/>
                 <div className="form-group row">
                     <div className="col-lg-12">
                         <CarsList org="a" token={this.props.match.params.token}/>

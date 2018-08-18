@@ -8,7 +8,10 @@ const B_QUERY_ALL_CARS_URL = 'http://localhost:4001/channels/a-b/chaincodes/rela
 
 const A_INIT_LEDGER_URL = 'http://localhost:4000/channels/a-b/chaincodes/relationship';
 
-export {enrollAdmin, queryAllCars, initLedger};
+const A_QUERY_CAR_URL = 'http://localhost:4000/channels/a-b/chaincodes/relationship?fcn=queryCar&peer=a%2Fpeer0';
+const B_QUERY_CAR_URL = 'http://localhost:4001/channels/a-b/chaincodes/relationship?fcn=queryCar&peer=b%2Fpeer0';
+
+export {enrollAdmin, queryAllCars, initLedger, queryCar};
 
 function enrollAdmin(org) {
     if (org === "a") {
@@ -45,4 +48,26 @@ function initLedger(token) {
     }).then(response => {
         return response.data;
     });
+}
+
+function queryCar(org, token, key) {
+    if (org === "a") {
+        return axios({
+            method: 'get',
+            url: A_QUERY_CAR_URL,
+            headers: {Authorization: `Bearer ${token}`},
+            params: {args: "[\"" + key + "\"]"}
+        }).then(response => {
+            return response.data.result;
+        });
+    } else if (org === "b") {
+        return axios({
+            method: 'get',
+            url: B_QUERY_CAR_URL,
+            headers: {Authorization: `Bearer ${token}`},
+            params: {args: "[\"" + key + "\"]"}
+        }).then(response => {
+            return response.data.result;
+        });
+    }
 }
