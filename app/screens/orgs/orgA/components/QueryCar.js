@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {queryCar} from "../../../../api/fabric-rest-api";
+import {changeCarOwner, queryCar} from "../../../../api/fabric-rest-api";
 
 export default class QueryCar extends Component {
     constructor() {
@@ -15,9 +15,23 @@ export default class QueryCar extends Component {
         queryCar("a", this.props.token, this.key.value)
             .then(data => {
                 this.setState({
+                    key: this.key.value,
                     queried: true,
                     car: data
                 });
+            });
+    }
+
+    changeCarOwner(e) {
+        e.preventDefault();
+        changeCarOwner(this.props.token, this.state.key, this.newOwner.value)
+            .then(() => {
+                this.setState({
+                    key: "",
+                    queried: false,
+                    car: {}
+                });
+                this.props.trigger();
             });
     }
 
@@ -33,7 +47,13 @@ export default class QueryCar extends Component {
                     <h6>Владелец: {car.owner}</h6>
                     <h6 hidden={!car.restricted}>Ключ: {car.restricted}</h6>
                     <h6 hidden={!car.restricted}>Ключ: {car.reason}</h6>
-                    <button className="btn btn-primary btn-block">
+                    <input
+                        type="text"
+                        placeholder="Введите имя нового владельца"
+                        className="form-control"
+                        ref={ref => (this.newOwner = ref)}
+                    />
+                    <button className="btn btn-primary btn-block" onClick={this.changeCarOwner.bind(this)}>
                         Change owner
                     </button>
                 </div>

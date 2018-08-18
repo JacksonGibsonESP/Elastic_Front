@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import CarsList from "../../common/CarsList";
-import {initLedger, queryCar} from "../../../api/fabric-rest-api";
+import {initLedger} from "../../../api/fabric-rest-api";
 import QueryCar from "./components/QueryCar";
 
 export default class OrgA extends Component {
@@ -11,6 +11,7 @@ export default class OrgA extends Component {
             transaction: "",
             car: {}
         };
+        this.triggerState = this.triggerState.bind(this);
     }
 
     initLedger(e) {
@@ -23,14 +24,10 @@ export default class OrgA extends Component {
             });
     }
 
-    queryCar(e) {
-        e.preventDefault();
-        queryCar("a", this.props.match.params.token, "CAR0")
-            .then(data => {
-                this.setState({
-                    car: data
-                });
-            });
+    triggerState() {
+        this.setState({
+            trigger: !this.state.trigger
+        });
     }
 
     render() {
@@ -54,10 +51,10 @@ export default class OrgA extends Component {
                     <Link to="/">back</Link>
                 </div>
                 {button}
-                <QueryCar token={this.props.match.params.token}/>
+                <QueryCar trigger={this.triggerState} token={this.props.match.params.token}/>
                 <div className="form-group row">
                     <div className="col-lg-12">
-                        <CarsList org="a" token={this.props.match.params.token}/>
+                        <CarsList trigger={this.state.trigger} org="a" token={this.props.match.params.token}/>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ const A_QUERY_ALL_CARS_URL = 'http://localhost:4000/channels/a-b/chaincodes/rela
 const B_QUERY_ALL_CARS_URL = 'http://localhost:4001/channels/a-b/chaincodes/relationship?args=%7B%7D&fcn=queryAllCars&peer=b%2Fpeer0';
 
 const A_INIT_LEDGER_URL = 'http://localhost:4000/channels/a-b/chaincodes/relationship';
+const A_CHANGE_CAR_OWNER_URL = 'http://localhost:4000/channels/a-b/chaincodes/relationship';
 
 const A_QUERY_CAR_URL = 'http://localhost:4000/channels/a-b/chaincodes/relationship?fcn=queryCar&peer=a%2Fpeer0';
 const B_QUERY_CAR_URL = 'http://localhost:4001/channels/a-b/chaincodes/relationship?fcn=queryCar&peer=b%2Fpeer0';
@@ -14,7 +15,7 @@ const B_QUERY_CAR_URL = 'http://localhost:4001/channels/a-b/chaincodes/relations
 const B_ADD_RESTRICTION_URL = 'http://localhost:4001/channels/a-b/chaincodes/relationship';
 const B_REMOVE_RESTRICTION_URL = 'http://localhost:4001/channels/a-b/chaincodes/relationship';
 
-export {enrollAdmin, queryAllCars, initLedger, queryCar, addRestriction, removeRestriction};
+export {enrollAdmin, queryAllCars, initLedger, queryCar, addRestriction, removeRestriction, changeCarOwner};
 
 function enrollAdmin(org) {
     if (org === "a") {
@@ -92,6 +93,17 @@ function removeRestriction(token, key) {
         url: B_REMOVE_RESTRICTION_URL,
         headers: {Authorization: `Bearer ${token}`},
         data: {"peers":["b/peer0"],"fcn":"removeRestriction","args":[key]}
+    }).then(response => {
+        return response.data.transaction;
+    });
+}
+
+function changeCarOwner(token, key, newOwner) {
+    return axios({
+        method: 'post',
+        url: A_CHANGE_CAR_OWNER_URL,
+        headers: {Authorization: `Bearer ${token}`},
+        data: {"peers":["b/peer0"],"fcn":"changeCarOwner","args":[key, newOwner]}
     }).then(response => {
         return response.data.transaction;
     });

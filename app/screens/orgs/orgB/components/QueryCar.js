@@ -31,6 +31,7 @@ export default class QueryCar extends Component {
                     queried: false,
                     car: {}
                 });
+                this.props.trigger();
             });
     }
 
@@ -43,6 +44,7 @@ export default class QueryCar extends Component {
                     queried: false,
                     car: {}
                 });
+                this.props.trigger();
             });
     }
 
@@ -73,7 +75,7 @@ export default class QueryCar extends Component {
                 </div>
             );
         } else {
-            return(
+            return (
                 <div>
                     <input
                         type="text"

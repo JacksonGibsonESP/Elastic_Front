@@ -24,6 +24,12 @@ export default class CarsList extends Component {
         this.getCars(this.props);
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.trigger !== prevProps.trigger) {
+            this.getCars(this.props);
+        }
+    }
+
     render() {
         const {cars} = this.state;
         if (cars.length === 0) {
