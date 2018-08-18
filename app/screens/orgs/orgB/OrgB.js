@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import CarsList from "./components/CarsList";
+import CarsList from "../../common/CarsList";
 
-export default class AOrganisation extends Component {
+export default class OrgB extends Component {
 
     render() {
         return (
@@ -12,7 +12,7 @@ export default class AOrganisation extends Component {
                 </div>
                 <div className="form-group row">
                     <div className="col-lg-12">
-                        <CarsList token={this.props.match.params.token}/>
+                        <CarsList org="b" token={this.props.match.params.token}/>
                     </div>
                 </div>
             </div>

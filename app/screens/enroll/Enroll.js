@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from "react-router-dom";
-import {enrollAAdmin, enrollBAdmin} from "../../api/fabric-rest-api";
+import {enrollAdmin} from "../../api/fabric-rest-api";
 
 export default class Enroll extends Component {
 
@@ -14,7 +14,7 @@ export default class Enroll extends Component {
 
     redirectA(e) {
         e.preventDefault();
-        enrollAAdmin().then(token => {
+        enrollAdmin("a").then(token => {
             this.setState({
                 token: token,
                 toA: true
@@ -24,7 +24,7 @@ export default class Enroll extends Component {
 
     redirectB(e) {
         e.preventDefault();
-        enrollBAdmin().then(token => {
+        enrollAdmin("b").then(token => {
             this.setState({
                 token: token,
                 toB: true

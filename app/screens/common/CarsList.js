@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {queryAllCarsByA} from "../../../../api/fabric-rest-api";
-import CarListItem from "../../../common/CarListItem";
+import {queryAllCars} from "../../api/fabric-rest-api";
+import CarListItem from "./CarListItem";
 
 export default class CarsList extends Component {
     constructor() {
@@ -11,8 +11,9 @@ export default class CarsList extends Component {
     }
 
     getCars(props) {
+        const {org} = props;
         const {token} = props;
-        queryAllCarsByA(token).then(cars => {
+        queryAllCars(org, token).then(cars => {
             this.setState({
                 cars: cars
             });
