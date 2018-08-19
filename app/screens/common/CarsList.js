@@ -38,6 +38,7 @@ export default class CarsList extends Component {
         }
         return (
             <div>
+                <h6 className="custom-margin">Содержимое реестра:</h6>
                 <ul className="list-unstyled">
                     {renderCars(cars)}
                 </ul>

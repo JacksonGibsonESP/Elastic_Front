@@ -44,12 +44,12 @@ export default class Enroll extends Component {
                 <div className="row custom-margin-enroll justify-content-around">
                     <div className="col-2">
                         <button className="btn btn-primary" onClick={this.redirectA.bind(this)}>
-                            Вход за организацию "a"
+                            Организация "a"
                         </button>
                     </div>
                     <div className="col-2">
                         <button className="btn btn-primary" onClick={this.redirectB.bind(this)}>
-                            Вход за организацию "b"
+                            Организация "b"
                         </button>
                     </div>
                 </div>
