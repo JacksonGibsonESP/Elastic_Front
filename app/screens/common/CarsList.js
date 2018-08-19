@@ -6,7 +6,8 @@ export default class CarsList extends Component {
     constructor() {
         super();
         this.state = {
-            cars: []
+            cars: [],
+            empty: false
         }
     }
 
@@ -14,9 +15,17 @@ export default class CarsList extends Component {
         const {org} = props;
         const {token} = props;
         queryAllCars(org, token).then(cars => {
-            this.setState({
-                cars: cars
-            });
+            if (cars.length === 0) {
+                this.setState({
+                    cars: [],
+                    empty: true
+                });
+            } else {
+                this.setState({
+                    cars: cars,
+                    empty: false
+                });
+            }
         });
     }
 
@@ -32,6 +41,10 @@ export default class CarsList extends Component {
 
     render() {
         const {cars} = this.state;
+        const {empty} = this.state;
+        if (empty) {
+            return <h6 className="custom-margin">В данный момент реестр пуст</h6>
+        }
         if (cars.length === 0) {
             //TO DO: Loader
             return <div/>;
