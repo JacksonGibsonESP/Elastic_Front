@@ -28,8 +28,12 @@ p {
 	white-space: pre-line;
 }
 
-.custom-margin {
+.custom-margin-enroll {
 	margin-top: 250px;
+}
+
+.custom-margin-org {
+	margin-top: 16px;
 }
 
 .text-formatting {

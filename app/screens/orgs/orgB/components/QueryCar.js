@@ -57,7 +57,7 @@ export default class QueryCar extends Component {
                 <div>
                     <Car
                         vin={this.state.key}
-                        manuafactorer={car.make}
+                        manufacturer={car.make}
                         model={car.model}
                         color={car.color}
                         owner={car.owner}

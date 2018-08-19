@@ -7,7 +7,7 @@ function CarListItem({car}) {
         <li className="border-bottom">
             <Car
                 vin={car.Key}
-                manuafactorer={car.Record.make}
+                manufacturer={car.Record.make}
                 model={car.Record.model}
                 color={car.Record.color}
                 owner={car.Record.owner}
