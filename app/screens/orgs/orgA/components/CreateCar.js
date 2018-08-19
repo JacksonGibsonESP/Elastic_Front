@@ -31,48 +31,62 @@ export default class CreateCar extends Component {
         const {queried} = this.state;
         if (queried) {
             return (
-                <div>
-                    <input
-                        type="text"
-                        placeholder="Введите ключ"
-                        className="form-control"
-                        ref={ref => (this.key = ref)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Введите марку производителя"
-                        className="form-control"
-                        ref={ref => (this.manufacturer = ref)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Введите модель"
-                        className="form-control"
-                        ref={ref => (this.model = ref)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Введите цвет"
-                        className="form-control"
-                        ref={ref => (this.color = ref)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Введите имя владельца"
-                        className="form-control"
-                        ref={ref => (this.owner = ref)}
-                    />
-                    <button className="btn btn-primary btn-block" onClick={this.changeCarOwner.bind(this)}>
-                        Create car
-                    </button>
+                <div className="row custom-margin-org">
+                    <div className="col">
+                        <input
+                            type="text"
+                            placeholder="VIN"
+                            className="form-control"
+                            ref={ref => (this.key = ref)}
+                        />
+                    </div>
+                    <div className="col">
+                        <input
+                            type="text"
+                            placeholder="Марка"
+                            className="form-control"
+                            ref={ref => (this.manufacturer = ref)}
+                        />
+                    </div>
+                    <div className="col">
+                        <input
+                            type="text"
+                            placeholder="Модель"
+                            className="form-control"
+                            ref={ref => (this.model = ref)}
+                        />
+                    </div>
+                    <div className="col">
+                        <input
+                            type="text"
+                            placeholder="Цвет"
+                            className="form-control"
+                            ref={ref => (this.color = ref)}
+                        />
+                    </div>
+                    <div className="col">
+                        <input
+                            type="text"
+                            placeholder="Имя владельца"
+                            className="form-control"
+                            ref={ref => (this.owner = ref)}
+                        />
+                    </div>
+                    <div className="col">
+                        <button className="btn btn-primary btn-block" onClick={this.changeCarOwner.bind(this)}>
+                            Внести
+                        </button>
+                    </div>
                 </div>
             )
         } else {
             return (
-                <div>
-                    <button className="btn btn-primary btn-block" onClick={this.query.bind(this)}>
-                        Create car
-                    </button>
+                <div className="row custom-margin-org">
+                    <div className="col">
+                        <button className="btn btn-primary" onClick={this.query.bind(this)}>
+                            Внести в реестр автомобиль
+                        </button>
+                    </div>
                 </div>
             )
         }

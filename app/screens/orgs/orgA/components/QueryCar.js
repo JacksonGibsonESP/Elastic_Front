@@ -36,57 +36,96 @@ export default class QueryCar extends Component {
             });
     }
 
+    flashState(e) {
+        e.preventDefault();
+        this.setState({
+            key: "",
+            queried: false,
+            car: {}
+        });
+    }
+
     render() {
         const {queried} = this.state;
         if (queried) {
             const {car} = this.state;
             const {restricted} = car;
-            let button;
             if (!restricted) {
-                button =
+                return (
                     <div>
-                        <input
-                            type="text"
-                            placeholder="Введите имя нового владельца"
-                            className="form-control"
-                            ref={ref => (this.newOwner = ref)}
-                        />
-                        <button className="btn btn-primary btn-block" onClick={this.changeCarOwner.bind(this)}>
-                            Change owner
-                        </button>
+                        <div className="row custom-margin-org">
+                            <div className="col">
+                                <Car
+                                    vin={this.state.key}
+                                    manufacturer={car.make}
+                                    model={car.model}
+                                    color={car.color}
+                                    owner={car.owner}
+                                    restricted={car.restricted}
+                                    reason={car.reason}
+                                />
+                            </div>
+                        </div>
+                        <div className="row custom-margin-org">
+                            <div className="col">
+                                <input
+                                    type="text"
+                                    placeholder="Новое имя"
+                                    className="form-control"
+                                    ref={ref => (this.newOwner = ref)}
+                                />
+                            </div>
+                            <div className="col">
+                                <button className="btn btn-primary" onClick={this.changeCarOwner.bind(this)}>
+                                    Изменить имя владельца
+                                </button>
+                            </div>
+                        </div>
                     </div>
+                );
             } else {
-                button =
-                    <div className="text-danger">
-                        Сменить владельца невозможно! Есть ограничения!
+                return (
+                    <div className="row custom-margin-org">
+                        <div className="col">
+                            <Car
+                                vin={this.state.key}
+                                manufacturer={car.make}
+                                model={car.model}
+                                color={car.color}
+                                owner={car.owner}
+                                restricted={car.restricted}
+                                reason={car.reason}
+                            />
+                        </div>
+                        <div className="col">
+                            <div className="alert alert-danger" role="alert">
+                                Сменить владельца невозможно! Есть ограничения!
+                            </div>
+                        </div>
+                        <div className="col">
+                            <button className="col btn btn-primary btn-block" onClick={this.flashState.bind(this)}>
+                                Ок
+                            </button>
+                        </div>
                     </div>
+                );
             }
-            return (
-                <div>
-                    <Car
-                        vin={this.state.key}
-                        manufacturer={car.make}
-                        model={car.model}
-                        color={car.color}
-                        owner={car.owner}
-                        restricted={car.restricted}
-                        reason={car.reason}
-                    />
-                    {button}
-                </div>
-            );
         } else {
             return (
-                <div>
-                    <input
-                        type="text"
-                        placeholder="Введите VIN"
-                        className="form-control"
-                        ref={ref => (this.key = ref)}
-                    />
-                    <button className="btn btn-primary btn-block" onClick={this.queryCar.bind(this)}>
-                        Query car
-                    </button>
+                <div className="row custom-margin-org align-content-start">
+                    <div className="col-2">
+                        <input
+                            type="text"
+                            placeholder="VIN"
+                            className="form-control"
+                            ref={ref => (this.key = ref)}
+                        />
+                    </div>
+                    <div className="col-2">
+                        <button className="btn btn-primary" onClick={this.queryCar.bind(this)}>
+                            Запрос
+                        </button>
+                    </div>
                 </div>
             )
         }
