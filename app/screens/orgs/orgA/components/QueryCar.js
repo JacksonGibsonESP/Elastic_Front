@@ -39,27 +39,39 @@ export default class QueryCar extends Component {
         const {queried} = this.state;
         if (queried) {
             const {car} = this.state;
+            const {restricted} = car;
+            let button;
+            if (!restricted) {
+                button =
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Введите имя нового владельца"
+                            className="form-control"
+                            ref={ref => (this.newOwner = ref)}
+                        />
+                        <button className="btn btn-primary btn-block" onClick={this.changeCarOwner.bind(this)}>
+                            Change owner
+                        </button>
+                    </div>
+            } else {
+                button =
+                    <div className="text-danger">
+                        Сменить владельца невозможно! Есть ограничения!
+                    </div>
+            }
             return (
                 <div>
                     <h6>Марка: {car.make}</h6>
                     <h6>Модель: {car.model}</h6>
                     <h6>Цвет: {car.color}</h6>
                     <h6>Владелец: {car.owner}</h6>
-                    <h6 hidden={!car.restricted}>Ключ: {car.restricted}</h6>
-                    <h6 hidden={!car.restricted}>Ключ: {car.reason}</h6>
-                    <input
-                        type="text"
-                        placeholder="Введите имя нового владельца"
-                        className="form-control"
-                        ref={ref => (this.newOwner = ref)}
-                    />
-                    <button className="btn btn-primary btn-block" onClick={this.changeCarOwner.bind(this)}>
-                        Change owner
-                    </button>
+                    <h6 className="text-danger" hidden={!car.restricted}>Ограничение: {car.reason}</h6>
+                    {button}
                 </div>
             );
         } else {
-            return(
+            return (
                 <div>
                     <input
                         type="text"
