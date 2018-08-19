@@ -33,9 +33,13 @@ export default class OrgB extends Component {
 
         return (
             <div className="container">
-                <button className="btn btn-primary" onClick={this.redirectBack.bind(this)}>
-                    Назад
-                </button>
+                <div className="row custom-margin-org align-content-start">
+                    <div className="col">
+                        <button className="btn btn-primary" onClick={this.redirectBack.bind(this)}>
+                            Назад
+                        </button>
+                    </div>
+                </div>
                 <QueryCar trigger={this.triggerState} token={this.props.match.params.token}/>
                 <div className="form-group row">
                     <div className="col-lg-12">

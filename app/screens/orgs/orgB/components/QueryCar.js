@@ -49,47 +49,77 @@ export default class QueryCar extends Component {
             });
     }
 
+    flashState(e) {
+        e.preventDefault();
+        this.setState({
+            key: "",
+            queried: false,
+            car: {}
+        });
+    }
+
     render() {
         const {queried} = this.state;
         if (queried) {
             const {car} = this.state;
             return (
                 <div>
-                    <Car
-                        vin={this.state.key}
-                        manufacturer={car.make}
-                        model={car.model}
-                        color={car.color}
-                        owner={car.owner}
-                        restricted={car.restricted}
-                        reason={car.reason}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Введите ограничение"
-                        className="form-control"
-                        ref={ref => (this.restriction = ref)}
-                    />
-                    <button className="btn btn-primary btn-block" onClick={this.addRestriction.bind(this)}>
-                        Add restriction
-                    </button>
-                    <button className="btn btn-primary btn-block" onClick={this.removeRestriction.bind(this)}>
-                        Remove restriction
-                    </button>
+                    <div className="row custom-margin-org align-content-start">
+                        <div className="col">
+                            <Car
+                                vin={this.state.key}
+                                manufacturer={car.make}
+                                model={car.model}
+                                color={car.color}
+                                owner={car.owner}
+                                restricted={car.restricted}
+                                reason={car.reason}
+                            />
+                        </div>
+                    </div>
+                    <div className="row custom-margin-org align-content-start">
+                        <div className="col">
+                            <input
+                                type="text"
+                                placeholder="Ограничение"
+                                className="form-control"
+                                ref={ref => (this.restriction = ref)}
+                            />
+                        </div>
+                        <div className="col">
+                            <button className="btn btn-primary" onClick={this.addRestriction.bind(this)}>
+                                Задать ограничение
+                            </button>
+                        </div>
+                        <div className="col">
+                            <button className="btn btn-primary" onClick={this.removeRestriction.bind(this)}>
+                                Удалить ограничение
+                            </button>
+                        </div>
+                        <div className="col">
+                            <button className="btn btn-primary" onClick={this.flashState.bind(this)}>
+                                Отмена
+                            </button>
+                        </div>
+                    </div>
                 </div>
             );
         } else {
             return (
-                <div>
-                    <input
-                        type="text"
-                        placeholder="Введите ключ"
-                        className="form-control"
-                        ref={ref => (this.key = ref)}
-                    />
-                    <button className="btn btn-primary btn-block" onClick={this.queryCar.bind(this)}>
-                        Query car
-                    </button>
+                <div className="row custom-margin-org align-content-start">
+                    <div className="col-2">
+                        <input
+                            type="text"
+                            placeholder="VIN"
+                            className="form-control"
+                            ref={ref => (this.key = ref)}
+                        />
+                    </div>
+                    <div className="col">
+                        <button className="btn btn-primary" onClick={this.queryCar.bind(this)}>
+                            Запрос
+                        </button>
+                    </div>
                 </div>
             )
         }
