@@ -21,6 +21,7 @@ export default class OrgA extends Component {
                 this.setState({
                     transaction: transaction
                 });
+                this.triggerState();
             });
     }
 
@@ -41,7 +42,7 @@ export default class OrgA extends Component {
         } else {
             button =
                 <div>
-                    {transaction}
+                    Ledger initiated
                 </div>
         }
 
