@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {addRestriction, queryCar, removeRestriction} from "../../../../api/fabric-rest-api";
+import Car from "../../../common/Car";
 
 export default class QueryCar extends Component {
     constructor() {
@@ -54,12 +55,15 @@ export default class QueryCar extends Component {
             const {car} = this.state;
             return (
                 <div>
-                    <h6>Марка: {car.make}</h6>
-                    <h6>Модель: {car.model}</h6>
-                    <h6>Цвет: {car.color}</h6>
-                    <h6>Владелец: {car.owner}</h6>
-                    <h6 hidden={!car.restricted}>Ключ: {car.restricted}</h6>
-                    <h6 hidden={!car.restricted}>Ключ: {car.reason}</h6>
+                    <Car
+                        vin={this.state.key}
+                        manuafactorer={car.make}
+                        model={car.model}
+                        color={car.color}
+                        owner={car.owner}
+                        restricted={car.restricted}
+                        reason={car.reason}
+                    />
                     <input
                         type="text"
                         placeholder="Введите ограничение"

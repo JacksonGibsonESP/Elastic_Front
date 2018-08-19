@@ -1,17 +1,19 @@
 import React from 'react';
-
+import Car from "./Car";
 export default CarListItem;
 
 function CarListItem({car}) {
     return (
         <li className="border-bottom">
-            <h6>Ключ: {car.Key}</h6>
-            <h6>Марка: {car.Record.make}</h6>
-            <h6>Модель: {car.Record.model}</h6>
-            <h6>Цвет: {car.Record.color}</h6>
-            <h6>Владелец: {car.Record.owner}</h6>
-            <h6 className="text-danger" hidden={!car.Record.restricted}>Есть ограничение!</h6>
-            <h6 className="text-danger" hidden={!car.Record.restricted}>Причина ограничения: {car.Record.reason}</h6>
+            <Car
+                vin={car.Key}
+                manuafactorer={car.Record.make}
+                model={car.Record.model}
+                color={car.Record.color}
+                owner={car.Record.owner}
+                restricted={car.Record.restricted}
+                reason={car.Record.reason}
+            />
         </li>
     );
 }
