@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import CarsList from "../../common/CarsList";
 import QueryCar from "../orgB/components/QueryCar";
 
@@ -19,12 +19,23 @@ export default class OrgB extends Component {
         });
     }
 
+    redirectBack(e) {
+        e.preventDefault();
+        this.setState({
+            back: true
+        })
+    }
+
     render() {
+        if (this.state.back === true) {
+            return <Redirect to={`/`}/>
+        }
+
         return (
             <div className="container">
-                <div>
-                    <Link to="/">back</Link>
-                </div>
+                <button className="btn btn-primary" onClick={this.redirectBack.bind(this)}>
+                    Назад
+                </button>
                 <QueryCar trigger={this.triggerState} token={this.props.match.params.token}/>
                 <div className="form-group row">
                     <div className="col-lg-12">
@@ -32,7 +43,6 @@ export default class OrgB extends Component {
                     </div>
                 </div>
             </div>
-
         );
     }
 }

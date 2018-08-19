@@ -1,32 +1,6 @@
-/*ul {*/
-	/*list-style-type: none;*/
-/*}*/
-
 li {
 	padding: 5px 0;
 }
-
-/*h4 {*/
-    /*font-weight: normal;*/
-/*}*/
-
-/*h5 {*/
-    /*font-weight: normal;*/
-/*}*/
-
-/*h6 {*/
-    /*font-weight: normal;*/
-/*}*/
-
-/*mark, .mark {*/
-	/*background-color: #00A69B;*/
-	/*color: #FFF;*/
-	/*padding: 1px 5px;*/
-/*}*/
-
-/*p {*/
-	/*white-space: pre-line;*/
-/*}*/
 
 .custom-margin-enroll {
 	margin-top: 250px;
@@ -35,7 +9,3 @@ li {
 .custom-margin-org {
 	margin-top: 16px;
 }
-
-/*.text-formatting {*/
-	/*text-align: justify;*/
-/*}*/
